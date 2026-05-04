@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../bloc/auth_bloc.dart';
+import '../pages/by_author_page.dart';
+import '../pages/by_title_page.dart';
+import '../pages/login_page.dart';
+import '../pages/profile_page.dart';
+import '../widgets/main_shell.dart';
 import 'refresh_listenable.dart';
 
 GoRouter createRouter(AuthBloc authBloc) {
@@ -17,7 +22,8 @@ GoRouter createRouter(AuthBloc authBloc) {
     },
     routes: [
       ShellRoute(
-        builder: (context, state, child) => Scaffold(body: child),
+        builder: (context, state, child) =>
+            MainShell(state: state, child: child),
         routes: [
           GoRoute(
             path: '/',
@@ -27,7 +33,7 @@ GoRouter createRouter(AuthBloc authBloc) {
           GoRoute(
             path: '/byAuthor',
             name: 'byAuthor',
-            builder: (context, state) => const Placeholder(),
+            builder: (context, state) => const ByAuthorPage(),
             routes: [
               GoRoute(
                 path: 'detail',
@@ -39,7 +45,7 @@ GoRouter createRouter(AuthBloc authBloc) {
           GoRoute(
             path: '/byTitle',
             name: 'byTitle',
-            builder: (context, state) => const Placeholder(),
+            builder: (context, state) => const ByTitlePage(),
             routes: [
               GoRoute(
                 path: 'detail',
@@ -51,14 +57,14 @@ GoRouter createRouter(AuthBloc authBloc) {
           GoRoute(
             path: '/profile',
             name: 'profile',
-            builder: (context, state) => const Placeholder(),
+            builder: (context, state) => const ProfilePage(),
           ),
         ],
       ),
       GoRoute(
         path: '/login',
         name: 'login',
-        builder: (context, state) => const Placeholder(),
+        builder: (context, state) => const LoginPage(),
       ),
     ],
   );
