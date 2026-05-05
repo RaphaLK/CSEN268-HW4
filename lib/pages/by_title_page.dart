@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../data/books.dart';
 import '../widgets/book_list_item.dart';
 
@@ -23,7 +24,10 @@ class ByTitlePage extends StatelessWidget {
                 ?.copyWith(fontWeight: FontWeight.bold),
           ),
         ),
-        ...sorted.map((b) => BookListItem(book: b)),
+        ...sorted.map((b) => BookListItem(
+          book: b,
+          onTap: () => context.goNamed('byTitleDetail', extra: b),
+        )),
       ],
     );
   }

@@ -3,12 +3,15 @@ import '../data/books.dart';
 
 class BookListItem extends StatelessWidget {
   final Book book;
+  final VoidCallback? onTap;
 
-  const BookListItem({super.key, required this.book});
+  const BookListItem({super.key, required this.book, this.onTap});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
       margin: const EdgeInsets.symmetric(vertical: 4),
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
       decoration: BoxDecoration(
@@ -32,6 +35,7 @@ class BookListItem extends StatelessWidget {
           ),
         ],
       ),
+    ),
     );
   }
 }
