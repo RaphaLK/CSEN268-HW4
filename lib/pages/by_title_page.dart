@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
+import '../data/books.dart';
+import '../widgets/book_list_item.dart';
 
 class ByTitlePage extends StatelessWidget {
   const ByTitlePage({super.key});
 
-  static const _books = [
-    ('Da Vinci Code', 'Dan Brown'),
-    ('Da Vinci Code', 'Dan Brown'),
-    ('Da Vinci Code', 'Dan Brown'),
-    ('Da Vinci Code', 'Dan Brown'),
-  ];
-
   @override
   Widget build(BuildContext context) {
+    final sorted = [...books]
+      ..sort((a, b) => a.title.compareTo(b.title));
+
     return ListView(
       padding: const EdgeInsets.all(16),
       children: [
@@ -25,44 +23,8 @@ class ByTitlePage extends StatelessWidget {
                 ?.copyWith(fontWeight: FontWeight.bold),
           ),
         ),
-        ..._books.map((b) => _BookListItem(title: b.$1, author: b.$2)),
+        ...sorted.map((b) => BookListItem(book: b)),
       ],
-    );
-  }
-}
-
-class _BookListItem extends StatelessWidget {
-  final String title;
-  final String author;
-
-  const _BookListItem({required this.title, required this.author});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 4),
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-      decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.primaryContainer,
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            title,
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
-          ),
-          const SizedBox(height: 2),
-          Text(
-            author,
-            style: TextStyle(
-              color: Theme.of(context).colorScheme.onSurfaceVariant,
-              fontSize: 13,
-            ),
-          ),
-        ],
-      ),
     );
   }
 }

@@ -5,7 +5,7 @@ import '../pages/by_author_page.dart';
 import '../pages/by_title_page.dart';
 import '../pages/login_page.dart';
 import '../pages/profile_page.dart';
-import '../widgets/main_shell.dart';
+import '../widgets/main_page.dart';
 import 'refresh_listenable.dart';
 
 GoRouter createRouter(AuthBloc authBloc) {
@@ -23,7 +23,7 @@ GoRouter createRouter(AuthBloc authBloc) {
     routes: [
       ShellRoute(
         builder: (context, state, child) =>
-            MainShell(state: state, child: child),
+            MainPage(state: state, child: child),
         routes: [
           GoRoute(
             path: '/',
