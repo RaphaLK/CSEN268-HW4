@@ -6,6 +6,7 @@ class BookDetailPage extends StatelessWidget {
 
   const BookDetailPage({super.key, required this.book});
 
+  // hopefully no need to implement this per book type right?...
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +24,8 @@ class BookDetailPage extends StatelessWidget {
         padding: EdgeInsets.all(16),
         child: Text(
           'Detail of the Book',
-          style: TextStyle(color: Colors.grey),
+          style: TextStyle(color: Colors.grey, fontSize: 24),
+          
         ),
       ),
     );
